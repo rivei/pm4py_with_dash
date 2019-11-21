@@ -1,9 +1,9 @@
-references:
-graphics http://rpy.sourceforge.net/rpy2/doc-dev/html/graphics.html
-bupaR using SVG animations.https://github.com/bupaverse/processanimateR
-Unleash the value of PROCESS MINING https://towardsdatascience.com/unleash-the-value-of-process-mining-4e3b5af4e9d8
-https://www.win.tue.nl/bpi/dorky.php?id=2012:challenge
-https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0207806
+# references:
+# graphics http://rpy.sourceforge.net/rpy2/doc-dev/html/graphics.html
+# bupaR using SVG animations.https://github.com/bupaverse/processanimateR
+# Unleash the value of PROCESS MINING https://towardsdatascience.com/unleash-the-value-of-process-mining-4e3b5af4e9d8
+# https://www.win.tue.nl/bpi/dorky.php?id=2012:challenge
+# https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0207806
 
 import rpy2.robjects.packages as rpackages
 utils = rpackages.importr('utils')
