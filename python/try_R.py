@@ -9,9 +9,9 @@ import rpy2.robjects.packages as rpackages
 utils = rpackages.importr('utils')
 utils.chooseCRANmirror(ind=1) # select the first mirror in the list
 
-packnames = ('bupaR', 'eventdataR','edeaR','processmapR','processmonitR','xesreadR','petrinetR')
-from rpy2.robjects.vectors import StrVector
-utils.install_packages(StrVector(packnames))
+#packnames = ('bupaR', 'eventdataR','edeaR','processmapR','processmonitR','xesreadR','petrinetR')
+#from rpy2.robjects.vectors import StrVector
+#utils.install_packages(StrVector(packnames))
 
 
 from rpy2.robjects.packages import importr, data
