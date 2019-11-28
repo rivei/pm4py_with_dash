@@ -18,6 +18,8 @@ import pathlib
 from dash.dependencies import Input, Output, State
 from scipy import stats
 
+import process_csv as pscsv
+
 group_colors = {"control": "light blue", "reference": "red"}
 
 app = dash.Dash(
