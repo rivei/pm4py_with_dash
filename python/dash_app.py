@@ -13,6 +13,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
 import pandas as pd
+import numpy as np
 #import pathlib
 
 from dash.dependencies import Input, Output, State
@@ -43,12 +44,21 @@ testdf = ppp.trace_df[ppp.trace_df['id']==0]
 #])
 ## Change the bar mode
 #ttfig.update_layout(barmode='stack')
-
+#
 import plotly.express as px
-ttfig = px.bar(ppp.trace_df, x="actseq", y="id", color='actid', orientation='h',
-             #hover_data=["tip", "size"],
-             height=1000,
-             title='Top Trace')
+#ttfig = px.bar(ppp.trace_df, x="actseq", y="id", color='actid', orientation='h',
+#             #hover_data=["tip", "size"],
+#             height=1000,
+#             title='Top Trace')
+
+ttfig = go.Figure(
+        data = go.Scatter(y = ppp.trace_df['actseq'],
+                                    x= ppp.trace_df['id'],
+                                    mode='markers', 
+                                    #height=1000,
+                                    orientation = 'h',
+                                    marker = dict(color= np.random.randn(120),#ppp.trace_df['actid'],
+                                                  symbol='square')))
 #tips = px.data.tips()
 #ttfig = px.bar(tips, x="total_bill", y="sex", color='day', orientation='h',
 #             hover_data=["tip", "size"],
@@ -60,7 +70,10 @@ ttfig = px.bar(ppp.trace_df, x="actseq", y="id", color='actid', orientation='h',
 dtfig = px.scatter(ppp.sort_df, x="sT", y="sid", color="actid")
                  #size='petal_length', hover_data=['petal_width'])
 
-mtxfig
+#mtxfig1 = go.Figure(data=go.Heatmap(
+#       z=[[1, 20, 30, 50, 1], [20, 1, 60, 80, 30], [30, 60, 1, -10, 20]],
+#       x=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+#       y=['Morning', 'Afternoon', 'Evening']))
 
 
 app.layout = html.Div(
