@@ -52,13 +52,26 @@ import plotly.express as px
 #             title='Top Trace')
 
 ttfig = go.Figure(
-        data = go.Scatter(y = ppp.trace_df['actseq'],
-                                    x= ppp.trace_df['id'],
-                                    mode='markers', 
-                                    #height=1000,
-                                    orientation = 'h',
-                                    marker = dict(color= np.random.randn(120),#ppp.trace_df['actid'],
-                                                  symbol='square')))
+        data = go.Scatter(y = -ppp.trace_df['actseq'],
+                            x = ppp.trace_df['id'],
+                            mode='markers',
+                            marker = dict(color= ppp.trace_df['nactid'],#np.random.randn(120),#ppp.trace_df['actid'],
+                                          colorscale = 'rainbow',#'Cividis',#'Viridis',
+                                          size = 10,
+                                          symbol='square')))
+#ttfig.update_layout(
+#    autosize=False,
+#    width=400,
+#    height=1000,
+#    margin=go.layout.Margin(
+#        l=50,
+#        r=50,
+#        b=100,
+#        t=100,
+#        pad=4
+#    ),
+#    paper_bgcolor="LightSteelBlue",
+#)
 #tips = px.data.tips()
 #ttfig = px.bar(tips, x="total_bill", y="sex", color='day', orientation='h',
 #             hover_data=["tip", "size"],

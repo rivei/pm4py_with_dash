@@ -167,6 +167,17 @@ trace_df['preid'] = trace_df.apply(lambda row: row['preid'] if row['actseq']!=0 
 
 trace_df['pre_post'] = trace_df.apply(lambda row: row['preid']+"-"+row['actid'], axis = 1)
 
+def actid2num(sactid, df):
+    nactid = -1
+    for i in range(0, len(df)):
+        if df['id'][i] == sactid:
+            nactid = i/len(df)
+    return nactid
+
+#actid2num("Confirmation of receipt", act_df)
+
+trace_df['nactid'] = trace_df['actid'].apply(lambda i:actid2num(i, act_df))
+
 # matrix
 df['pre_post'] = df.apply(lambda row: row['preid']+"-"+row['actid'], axis = 1)
 #mtxdf1 = pd.DataFrame({'ant':df['preid'],'con':df})
@@ -177,4 +188,4 @@ mtxdf= pd.DataFrame({'pre_post':mtxdf1.index, 'cnt': list(mtxdf1)})
 #roles Detection: related to resource vs activity?
 #from pm4py.algo.enhancement.roles import factory as roles_factory
 #roles = roles_factory.apply(log)
-
+aaa
