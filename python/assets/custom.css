@@ -72,10 +72,11 @@ h5{
 .card{
   padding:48px 24px 48px 24px;
   margin-left: 4%;
+  margin-top: 150px;
 }
 
 .card-left{
-  padding:48px 24px 48px 24px;
+  padding:24px 24px 48px 24px;
   margin-left: 0px;
 }
 
