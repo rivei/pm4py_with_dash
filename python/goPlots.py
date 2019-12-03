@@ -61,3 +61,19 @@ def dotted_chart(log):
 ##       x=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
 ##       y=['Morning', 'Afternoon', 'Evening']))
 #
+
+import plotly.figure_factory as ff
+import numpy as np
+def mtx_chart(log):
+    df = ppd.mtx_df(log)
+    df = df.replace(np.nan,0)
+    z_text = df.replace(0,"") #  new_items = [x if x % 2 else None for x in items]
+    colorscale = [[0, 'white'], [1, 'blue']]
+    font_colors =  ['black', 'white']# min max
+    fig = ff.create_annotated_heatmap(z=df.values,x=list(df.columns),y=list(df.index),
+                                      colorscale = colorscale, font_colors = font_colors,#'brbg',
+                                      annotation_text=z_text.values)#, showscale=True)
+    
+    return fig.update_layout(width = 1000, height = 800 )
+    
+    

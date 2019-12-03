@@ -127,7 +127,7 @@ app.layout = html.Div(
 							children=[
 								dcc.Tabs(
 									id="content_tabs",
-									value="ttrace",
+									value="seq",
 									children= [
 										dcc.Tab(
 											label="Map",
@@ -141,7 +141,7 @@ app.layout = html.Div(
 											value="ttrace",
 											children=[
 												html.H3("top trace"),
-				                                dcc.Graph(figure = gpp.top_trace_plot(default_log)),
+				                                #dcc.Graph(figure = gpp.top_trace_plot(default_log)),
 											],
 										),
 										dcc.Tab(
@@ -149,6 +149,7 @@ app.layout = html.Div(
 											value="seq",
 											children=[
 												html.H3("Sequence"),
+                                                dcc.Graph(figure = gpp.mtx_chart(default_log)),
 											],
 										),
 										dcc.Tab(

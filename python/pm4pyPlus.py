@@ -112,17 +112,17 @@ def traces_df(log):
     trace_df = pd.DataFrame({'id': tid, 'actid': actid, 'actseq':actseq, 'cnt':cnt})
     trace_df['preid'] = trace_df['actid'].shift(1)
     trace_df['preid'] = trace_df.apply(lambda row: row['preid'] if row['actseq']!=0 else 'START', axis = 1)    
-    trace_df['pre_post'] = trace_df.apply(lambda row: row['preid']+"-"+row['actid'], axis = 1)
+    trace_df['pre_post'] = trace_df.apply(lambda row: row['preid']+"@@"+row['actid'], axis = 1)
     
-    def actid2num(sactid, df):
-        nactid = -1
-        for i in range(0, len(df)):
-            if df['id'][i] == sactid:
-                nactid = i/len(df)
-        return nactid
-    
-    act_df = acts_df(log)
-    trace_df['nactid'] = trace_df['actid'].apply(lambda i:actid2num(i, act_df))
+#    def actid2num(sactid, df):
+#        nactid = -1
+#        for i in range(0, len(df)):
+#            if df['id'][i] == sactid:
+#                nactid = i/len(df)
+#        return nactid
+#    
+#    act_df = acts_df(log)
+#    trace_df['nactid'] = trace_df['actid'].apply(lambda i:actid2num(i, act_df))
     return trace_df
     
     
@@ -160,7 +160,27 @@ def sort_df(log):
     sort_df['sid'] = sid
     return sort_df
 
+def mtx_df(log):
+    df = traces_df(log)
+    prelist = (df['preid'].unique())
+    actlist = (df['actid'].unique())
+    dff = pd.DataFrame(columns=prelist,index = actlist)
+#    dff.columns = actlist
+#    dff.index = prelist
 
+    mtxdf1 = df.groupby('pre_post')['cnt'].sum() #agg(['sum','count','mean'])
+    #mtxdf1['abs'] = mtxdf1['sum']/mtxdf1['count']
+#    mtxdf= pd.DataFrame({'pre_post':mtxdf1.index, 'cnt': list(mtxdf1)})
+    
+    for s in mtxdf1.index:
+        a = s.split("@@")
+        if len(a) != 2:
+            print(a[0], a[1])
+        else:
+            dff[a[0]][a[1]] = mtxdf1[s]
+
+    return dff
+    
 #
 #activities = log_attributes_filter.get_attribute_values(log, "concept:name")
 #actid = []
